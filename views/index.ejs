@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Weather</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Let me find the current wheather for you.</h1>
+        <form action="/submit" id="form" class="form" method="POST">
+            <input class="form-inputs" type="text" name="longitude" placeholder="Enter longitude" required>
+            <input class="form-inputs" type="text" name="latitude" placeholder="Enter longitude" required>
+            <button type="submit" class="form-submit">Go</button>
+          </form>
+          <section id="cards" class="cards">
+            <%if (locals.data) {%>
+      
+              <article class="card-item">
+                <h2 class="card-activity">
+                    Details of <%=data.name %>:
+                </h2>
+                <h3 class="card-activity">
+                  Current Temperature: <%=data.main.temp %>
+                </h3>
+                <h3 class="card-activity">
+                    Weather Description: <%=data.weather[0].description %>
+                  </h3>
+                  <h3 class="card-activity">
+                    Humidity: <%=data.main.humidity %>
+                  </h3>
+                  <h3 class="card-activity">
+                    Country: <%=data.sys.country %>
+                  </h3>
+                  <h3 class="card-activity">
+                    Sunrise: <%=data.sys.sunrise %>
+                  </h3>
+                  <h3 class="card-activity">
+                   Sunset: <%=data.sys.sunset %>
+                  </h3>
+              </article>
+      
+              <%}%>
+      
+      
+                <%if (locals.error) {%>
+                  <div id="tag-error" class="tag-error">
+                    <%=error%>
+                  </div>
+                  <%}%>
+          </section>
+    </div>
+</body>
+</html>
